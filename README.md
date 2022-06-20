@@ -1,6 +1,9 @@
-# PHP_MVC
+# php.ini
+extension=pdo_mysql 주석 해제
 
-.htaccess 파일 생성
+
+
+# .htaccess 파일 생성
 
     Options -MultiViews
     RewriteEngine On
