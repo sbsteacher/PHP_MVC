@@ -10,6 +10,18 @@
     RewriteCond %{REQUEST_FILENAME} !-l
     RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
 
+#php.ini 수정
+주석 해제
+LoadModule rewrite_module modules/mod_rewrite.so
+
+
+
+<Directory "${SRVROOT}/htdocs">
+    AllowOverride All
+
+로 변경
+
+
 
 
 #Controller 예시
