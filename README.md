@@ -81,77 +81,79 @@ use application\models\BoardModel;
 
 
 # Model 예시
-namespace application\models;
-use PDO;
+    namespace application\models;
+    use PDO;
 
-class BoardModel extends Model {
+    class BoardModel extends Model {
 
-    public function selBoardList() {
-        $sql = "SELECT i_board, title FROM t_board ORDER BY i_board DESC";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_OBJ);
+        public function selBoardList() {
+            $sql = "SELECT i_board, title FROM t_board ORDER BY i_board DESC";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
+        }
+
+        public function selBoard(&$param) {
+            $sql = "SELECT i_board, title, ctnt FROM t_board WHERE i_board = :i_board";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindValue(':i_board', $param["i_board"]);
+            $stmt->execute();
+            return $stmt->fetch(PDO::FETCH_OBJ);
+        }
+
+        public function delBoard(&$param) {
+            $sql = "DELETE FROM t_board WHERE i_board = :i_board";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindValue(':i_board', $param["i_board"]);
+            return $stmt->execute();
+        }
+
+        public function updBoard(&$param) {
+            $sql = "UPDATE t_board SET title = :title WHERE i_board = :i_board";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->bindValue(':title', $param["title"]);
+            $stmt->bindValue(':i_board', $param["i_board"]);
+            return $stmt->execute();
+        }
     }
-
-    public function selBoard(&$param) {
-        $sql = "SELECT i_board, title, ctnt FROM t_board WHERE i_board = :i_board";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->bindValue(':i_board', $param["i_board"]);
-        $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_OBJ);
-    }
-
-    public function delBoard(&$param) {
-        $sql = "DELETE FROM t_board WHERE i_board = :i_board";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->bindValue(':i_board', $param["i_board"]);
-        return $stmt->execute();
-    }
-
-    public function updBoard(&$param) {
-        $sql = "UPDATE t_board SET title = :title WHERE i_board = :i_board";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->bindValue(':title', $param["title"]);
-        $stmt->bindValue(':i_board', $param["i_board"]);
-        return $stmt->execute();
-    }
-}
 
 # View 예시
-<h1>디테일!!!</h1>
+    <h1>디테일!!!</h1>
 
-<div><?=$this->data->i_board?></div>
-<div><?=$this->data->title?></div>
+    <div><?=$this->data->i_board?></div>
+    <div><?=$this->data->title?></div>
 
 
-<!DOCTYPE html>
-<html lang="en">
-<?php include_once "application/views/template/head.php"; ?>
-<body>
-    <h1>게시판 목록 페이지 </h1>
-    <a href="/board/writeView">글쓰기</a><br>
-    <?php
-        if (count($this->list) === 0) {
-            echo '현재 작성된 글이 없습니다.<br>';
-        } else {
-            foreach ($this->list as $item) {
-    ?>
-        <a href="/board/detail?i_board=<?=$item->i_board; ?>"><h3>제목 : <?=$item->title;?></h3></a> 
-    <?php   
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <?php include_once "application/views/template/head.php"; ?>
+    <body>
+        <h1>게시판 목록 페이지 </h1>
+        <a href="/board/writeView">글쓰기</a><br>
+        <?php
+            if (count($this->list) === 0) {
+                echo '현재 작성된 글이 없습니다.<br>';
+            } else {
+                foreach ($this->list as $item) {
+        ?>
+            <a href="/board/detail?i_board=<?=$item->i_board; ?>"><h3>제목 : <?=$item->title;?></h3></a> 
+        <?php   
+                }
             }
-        }
-    
-    ?>
-</body>
-</html>
 
-<h1>디테일!!!</h1>
+        ?>
+    </body>
+    </html>
 
-<div><?=$this->data->i_board?></div>
-<div><?=$this->data->title?></div>
 
-<form action="/board/modProc" method="post">
-    <input type="hidden" name="i_board" value="<?=$this->data->i_board?>">
-    <div><input type="text" name="title" value="<?=$this->data->title?>"></div>
-    <div><input type="submit" value="수정">
-</form>
+    <h1>디테일!!!</h1>
+
+    <div><?=$this->data->i_board?></div>
+    <div><?=$this->data->title?></div>
+
+    <form action="/board/modProc" method="post">
+        <input type="hidden" name="i_board" value="<?=$this->data->i_board?>">
+        <div><input type="text" name="title" value="<?=$this->data->title?>"></div>
+        <div><input type="submit" value="수정">
+    </form>
