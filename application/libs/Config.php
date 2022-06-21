@@ -1,7 +1,7 @@
 <?php
     define('_ROOT', $_SERVER['DOCUMENT_ROOT']);
     define('_DBTYPE', ''); //mysql, mariadb 등
-    define('_HOST', ''); //DB주소
+    define('_DBHOST', ''); //DB접속 주소
     define('_DBNAME', ''); //DB명
     define('_DBUSER', ''); //아이디
     define('_DBPASSWORD', '506greendg@'); //비번
