@@ -1,10 +1,10 @@
 # php.ini
-    주석 해제
+    - 주석 해제
     extension=pdo_mysql
 
 # httpd.conf
 
-    주석 해제       
+    - 주석 해제       
     LoadModule rewrite_module modules/mod_rewrite.so
 
     - AllowOverride None > AllowOverride All 로 변경
