@@ -11,6 +11,7 @@
     <Directory "${SRVROOT}/htdocs">
         AllowOverride All
     
+# php.ini, httpd.conf 파일 수정 후 아파치 서버 리스타트
 
 # .htaccess 파일 생성
 
