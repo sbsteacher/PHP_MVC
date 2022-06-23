@@ -15,4 +15,9 @@
     define("_CSS", "css");
     define("_JS", "js");
 
+    define("_LOGINUSER", "loginUser");
+
+    define("_LIST", "list");
+    define("_DATA", "data");
+    define("_ITEM", "item");
     
