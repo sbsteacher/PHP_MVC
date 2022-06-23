@@ -8,6 +8,11 @@
         return explode('/', $getUrl);
     }
 
+    function getMethod() {
+        $headers = getallheaders();
+        return $headers['Accept'];
+    }
+
     function isGetOne() {
         $urlPaths = getUrlPaths();
         if(isset($urlPaths[2])) { //one
