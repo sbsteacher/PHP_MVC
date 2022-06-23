@@ -1,8 +1,8 @@
-# php.ini
+# (php설치 폴더) php.ini 파일 수정
     - 주석 해제
     extension=pdo_mysql
 
-# httpd.conf
+# (Apache설치 폴더) httpd.conf 파일 수정
 
     - 주석 해제       
     LoadModule rewrite_module modules/mod_rewrite.so
@@ -13,7 +13,7 @@
     
 # php.ini, httpd.conf 파일 수정 후 아파치 서버 리스타트
 
-# .htaccess 파일 생성
+# root폴더에 .htaccess 파일 생성
 
     Options -MultiViews
     RewriteEngine On
