@@ -118,7 +118,15 @@ user/signup 주소면 로그인 필요
     namespace application\controllers;
 
     class UserController extends Controller {  
-
+        public function signup() {
+            $method = getMethod();
+            switch($method) {
+                case _GET:
+                    return ;
+                case _POST:
+                    return ;
+            }
+        }
         public function join() {
             $this->addAttribute(_TITLE, "회원가입");
             $this->addAttribute(_HEADER, $this->getView("template/header.php"));
