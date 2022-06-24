@@ -23,6 +23,16 @@
     RewriteCond %{REQUEST_FILENAME} !-l
     RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
 
+# 권한 예시 (Controller.php 파일의 $needLoginUrlArr 스태틱 배열에 추가)
+
+    private static $needLoginUrlArr = [
+        "board",         
+        "user/signup"
+    ];
+    
+1차 주소값 board면 로그인 필요.
+user/signup 주소면 로그인 필요
+
 
 # Controller 예시
 
